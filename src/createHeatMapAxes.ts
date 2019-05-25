@@ -4,6 +4,7 @@ import { CHART_HEIGHT, CHART_WIDTH, CHART_PADDING } from './constants';
 export function createHeatMapAxes(svg, {xScale, yScale}) {
   let xAxis = d3
     .axisBottom(xScale)
+    .ticks(d3.timeYear.filter(d => d.getFullYear() % 10 === 0))
     .tickSizeOuter(0);
   let yAxis = d3
     .axisLeft(yScale)
