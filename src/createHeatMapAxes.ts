@@ -2,7 +2,9 @@ import * as d3 from 'd3';
 import { CHART_HEIGHT, CHART_WIDTH, CHART_PADDING } from './constants';
 
 export function createHeatMapAxes(svg, {xScale, yScale}) {
-  let xAxis = d3.axisBottom(xScale).tickSizeOuter(0);
+  let xAxis = d3
+    .axisBottom(xScale)
+    .tickSizeOuter(0);
   let yAxis = d3
     .axisLeft(yScale)
     .ticks(d3.timeMonth)

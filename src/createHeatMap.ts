@@ -31,10 +31,11 @@ export function createHeatMap(dataset) {
     .append('rect')
     .attr('x', (d) => scales.xScale(setMonth(d.date, 0)))
     .attr('y', (d) => scales.yScale(
-      setMonth(
-        new Date(0),
-        d.date.getMonth())) - (yScaleStepLength / 2
-      )
+        setMonth(
+          new Date(0),
+          d.date.getMonth()
+        )
+      ) - (yScaleStepLength / 2)
     )
     .attr('width', xScaleStepLength)
     .attr('height', yScaleStepLength)
