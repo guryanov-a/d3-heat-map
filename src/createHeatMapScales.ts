@@ -9,7 +9,7 @@ export function createHeatMapScales(dataset) {
       d3.min(dataset, (d) => d.date),
       d3.max(dataset, (d) => d.date),
     ])
-    .range([CHART_PADDING, CHART_WIDTH - CHART_PADDING]);
+    .range([CHART_PADDING + 1, CHART_WIDTH - CHART_PADDING]);
   let yStartMonth = setMonth(new Date(0), -1);
   let yStartMonthMiddle = Math.floor(getDaysInMonth(yStartMonth) / 2);
   let yStartDate = addDays(yStartMonth, yStartMonthMiddle);
