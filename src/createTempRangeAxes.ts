@@ -5,7 +5,7 @@ export function createTempRangeAxes(svg, { xScale }, {height, padding}) {
 
   svg
     .append('g')
-    .attr('id', 'x-axis')
+    .attr('id', 'legend-x-axis')
     .attr('transform', `translate(0, ${height - padding})`)
     .call(xAxis);
 

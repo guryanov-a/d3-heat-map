@@ -10,7 +10,7 @@ export function createTempRange(dataset) {
   };
 
   let svg = d3
-    .select('#temp-range')
+    .select('#legend')
     .append('svg')
     .attr('width', sizes.width)
     .attr('height', sizes.height);
@@ -22,7 +22,7 @@ export function createTempRange(dataset) {
   let maxTemp = d3.max(dataset, (d) => d.variance);
   let tempStep = (maxTemp - minTemp) / sizes.width;
   let tempRange = Array.from({length: sizes.width});
-  tempRange = tempRange.map((tempRangeItem, i) => minTemp + i * tempStep);
+  tempRange = tempRange.map((_, i) => minTemp + i * tempStep);
 
   svg
     .selectAll('rect')
