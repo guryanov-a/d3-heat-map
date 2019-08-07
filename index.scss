@@ -27,10 +27,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-
-  &__dot {
-    @extend .dot;
-  }
 }
 
 .tooltip {
@@ -41,6 +37,7 @@
   border: 1px solid black;
   background: white;
   display: none;
+  text-align: center;
 
   &_visibility {
     &_visible {
@@ -73,5 +70,13 @@
     &:empty {
       display: none;
     }
+  }
+}
+
+.cell {
+  stroke-width: 2px;
+  
+  &:hover {
+    stroke: #222;
   }
 }
