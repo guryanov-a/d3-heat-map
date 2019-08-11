@@ -41,7 +41,7 @@ export async function initHeatMap(): Promise<void> {
     // show tooltip
     tooltip.classList.add('tooltip_visibility_visible');
     tooltip.style.top = `${targetCoords.top - tooltip.offsetHeight - targetCoords.width}px`;
-    tooltip.style.left = `${targetCoords.left + targetCoords.width * 2}px`;
+    tooltip.style.left = `${targetCoords.left + targetCoords.width * 2 - tooltip.offsetWidth / 2}px`;
   });
 
   heatMapEl.addEventListener("mouseout", (event): void => {
