@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-export function createTempRangeScales(dataset, {width, height, padding}) {
+export function createTempRangeScales(dataset, {width, padding}) {
   let xScale = d3
     .scaleLinear()
     .domain([

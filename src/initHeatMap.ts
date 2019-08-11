@@ -3,15 +3,13 @@ import { createHeatMap } from './createHeatMap';
 import { getData } from './getData';
 
 export async function initHeatMap(): Promise<void> {
-  const data = await getData();
-  const { monthlyVariance } = data;
-
+  const { monthlyVariance, baseTemperature } = await getData();
   const baseTemperatureTitle = document.getElementById('description');
   const baseTemperatureRange = {
     start: monthlyVariance[0].year,
     end: monthlyVariance[monthlyVariance.length - 1].year
   };
-  baseTemperatureTitle.textContent = `${baseTemperatureRange.start}-${baseTemperatureRange.end}: base temperature ${data.baseTemperature}℃`;
+  baseTemperatureTitle.textContent = `${baseTemperatureRange.start}-${baseTemperatureRange.end}: base temperature ${baseTemperature}℃`;
 
   const dataset = parseServerHeatMapData(monthlyVariance);
   createHeatMap(dataset);
@@ -26,14 +24,20 @@ export async function initHeatMap(): Promise<void> {
     if (!eventTarget.classList.contains('cell')) return;
     const targetCoords = eventTarget.getBoundingClientRect();
 
+    // set data attributes
     tooltip.dataset.year = eventTarget.dataset.year;
-    tooltipDate.textContent = `Date: ${eventTarget.dataset.month}.${eventTarget.dataset.year}`;
+
+    // date text
+    const date = new Date(Number(eventTarget.dataset.year), Number(eventTarget.dataset.month));
+    tooltipDate.textContent = `Date: ${date.toLocaleDateString('default', { year: 'numeric', month: 'long' })}`;
+
+    // temperature text
     tooltipTemperature.textContent = `Temperature: ${eventTarget.dataset.temp}`;
+
+    // show tooltip
     tooltip.classList.add('tooltip_visibility_visible');
     tooltip.style.top = `${targetCoords.top - tooltip.offsetHeight - targetCoords.width}px`;
     tooltip.style.left = `${targetCoords.left + targetCoords.width * 2}px`;
-
-
   });
 
   heatMapEl.addEventListener("mouseout", (event): void => {
