@@ -36,7 +36,7 @@ export async function initHeatMap(): Promise<void> {
 
     // temperature text
     tooltipTemperature.textContent = `Temperature: ${Number(eventTarget.dataset.temp).toFixed(2)}`;
-    tooltipTemperatureVariance.textContent = `Temperature variance: ${Number(eventTarget.dataset.tempVariance).toFixed(2)}`;
+    tooltipTemperatureVariance.textContent = `Temperature variance: ${Number(eventTarget.dataset.tempVariance) > 0 ? '+' : ''}${Number(eventTarget.dataset.tempVariance).toFixed(2)}`;
 
     // show tooltip
     tooltip.classList.add('tooltip_visibility_visible');
