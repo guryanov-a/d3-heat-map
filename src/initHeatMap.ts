@@ -20,6 +20,7 @@ export async function initHeatMap(): Promise<void> {
   const tooltip = document.querySelector('#tooltip') as HTMLElement;
   const tooltipDate = tooltip.querySelector('.tooltip__date');
   const tooltipTemperature = tooltip.querySelector('.tooltip__temperature');
+  const tooltipTemperatureVariance = tooltip.querySelector('.tooltip__temperature-variance');
 
   heatMapEl.addEventListener("mouseover", (event): void => {
     const eventTarget = event.target as SVGElement | HTMLElement;
@@ -34,7 +35,8 @@ export async function initHeatMap(): Promise<void> {
     tooltipDate.textContent = `Date: ${date.toLocaleDateString('default', { year: 'numeric', month: 'long' })}`;
 
     // temperature text
-    tooltipTemperature.textContent = `Temperature: ${eventTarget.dataset.temp}`;
+    tooltipTemperature.textContent = `Temperature: ${Number(eventTarget.dataset.temp).toFixed(2)}`;
+    tooltipTemperatureVariance.textContent = `Temperature variance: ${Number(eventTarget.dataset.tempVariance).toFixed(2)}`;
 
     // show tooltip
     tooltip.classList.add('tooltip_visibility_visible');

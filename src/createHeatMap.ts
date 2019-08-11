@@ -44,6 +44,7 @@ export function createHeatMap(dataset) {
     .attr('data-month', d => d.date.getMonth())
     .attr('data-year', d => d.date.getFullYear())
     .attr('data-temp', d => baseTemperature + d.variance)
+    .attr('data-temp-variance', d => d.variance)
     .attr('fill', (d) => colorScale(baseTemperature + d.variance))
     .each(function() {
       this.classList.add('cell');
