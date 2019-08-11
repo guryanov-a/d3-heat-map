@@ -1,9 +1,11 @@
 import { parseServerHeatMapData } from './parseServerHeatMapData';
 import { createHeatMap } from './createHeatMap';
 import { getData } from './getData';
+import { heatMapStore } from './stores/HeatMapStore';
 
 export async function initHeatMap(): Promise<void> {
-  const { monthlyVariance, baseTemperature } = await getData();
+  heatMapStore.data = await getData();
+  const { monthlyVariance, baseTemperature } = heatMapStore.data;
   const baseTemperatureTitle = document.getElementById('description');
   const baseTemperatureRange = {
     start: monthlyVariance[0].year,

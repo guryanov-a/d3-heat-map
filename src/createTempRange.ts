@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { createTempRangeScales } from './createTempRangeScales';
 import { createTempRangeAxes } from './createTempRangeAxes';
+import { heatMapStore } from './stores/HeatMapStore';
 
 export function createTempRange(dataset) {
   const sizes = {
@@ -18,8 +19,9 @@ export function createTempRange(dataset) {
   let scales = createTempRangeScales(dataset, sizes);
   let axes = createTempRangeAxes(svg, scales, sizes);
 
-  let minTemp = d3.min(dataset, (d) => d.variance);
-  let maxTemp = d3.max(dataset, (d) => d.variance);
+  const { baseTemperature } = heatMapStore.data;
+  let minTemp = baseTemperature + d3.min(dataset, (d) => d.variance);
+  let maxTemp = baseTemperature + d3.max(dataset, (d) => d.variance);
   let tempStep = (maxTemp - minTemp) / sizes.width;
   let tempRange = Array.from({length: sizes.width});
   tempRange = tempRange.map((_, i) => minTemp + i * tempStep);

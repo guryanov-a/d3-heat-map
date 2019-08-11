@@ -4,9 +4,11 @@ import { CHART_HEIGHT, CHART_WIDTH } from './constants';
 import { createTempRange } from './createTempRange';
 import { createHeatMapScales } from './createHeatMapScales';
 import { createHeatMapAxes } from './createHeatMapAxes';
+import { heatMapStore } from './stores/HeatMapStore';
 
 export function createHeatMap(dataset) {
-  let {scales: {
+  const { baseTemperature } = heatMapStore.data;
+  const {scales: {
     colorScale
   }} = createTempRange(dataset);
 
@@ -41,8 +43,8 @@ export function createHeatMap(dataset) {
     .attr('height', yScaleStepLength)
     .attr('data-month', d => d.date.getMonth())
     .attr('data-year', d => d.date.getFullYear())
-    .attr('data-temp', d => d.variance)
-    .attr('fill', (d) => colorScale(d.variance))
+    .attr('data-temp', d => baseTemperature + d.variance)
+    .attr('fill', (d) => colorScale(baseTemperature + d.variance))
     .each(function() {
       this.classList.add('cell');
     });
