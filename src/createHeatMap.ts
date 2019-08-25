@@ -26,7 +26,7 @@ export function createHeatMap(dataset) {
     scales.yScale(setMonth(new Date(0), dataset[1].date.getMonth()))
     -
     scales.yScale(setMonth(new Date(0), dataset[0].date.getMonth()));
-  let cellsD3 = svg
+  svg
     .selectAll('rect')
     .data(dataset)
     .enter()
@@ -49,13 +49,6 @@ export function createHeatMap(dataset) {
     .each(function() {
       this.classList.add('cell');
     });
-
-  let tooltip: HTMLElement = document.getElementById('tooltip');
-
-  cellsD3.on('mouseenter', ({}) => {
-  });
-  cellsD3.on('mouseleave', () => {
-  });
 
   return svg;
 }
