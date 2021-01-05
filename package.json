@@ -12,7 +12,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "d3": "^5.9.1",
     "date-fns": "^1.30.1"
   }
